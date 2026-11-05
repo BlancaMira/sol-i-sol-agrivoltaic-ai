@@ -1,27 +1,20 @@
 # Sol i Sòl — interactive dashboard
 
-**Open `index.html` directly in Chrome, Firefox, or Edge.** This version embeds a representative 7-day subset of the university project simulation, so it works **without a local server or a separate JSON request**.
+**Open `index.html` directly in Chrome, Firefox or Edge.** This file embeds a representative seven-day subset of the university simulation and runs without an external JSON request or local web server.
 
-The interface and control logic are preserved from the original submission. Select a crop, panel type and date to explore the recommendation, visualizations, energy/crop metrics and alerts.
+Select a crop, panel type and date to explore the recommended angles, visualizations, energy/crop indicators and alerts.
 
 ## Files
 
-- `index.html` — **standalone portfolio dashboard** (the one to open with double click).
-- `index.server.html` — unmodified original interface, loads `dashboard_data.json` via HTTP.
-- `dashboard_data.json` — reduced generated dataset extracted from the original coursework outputs; not field observations.
-- `build_dashboard_data.py` — original data-building script, requires data dependencies omitted from the portfolio.
-- `generar_autonom.py` — original standalone exporter (embeds the entire JSON into an HTML file).
+- `index.html` — standalone HTML dashboard with embedded simulation data (recommended).
+- `index.server.html` — original interface that requests a separate JSON file over HTTP.
+- `build_dashboard_data.py` — original builder; requires original data sources omitted from the repository.
+- `generar_autonom.py` — original exporter for an HTML file containing the simulation data.
 
-## Optional server-based version
+The external `dashboard_data.json` from the original submission is **not included**. The standalone `index.html` already contains the reduced demonstration data.
 
-From the project root:
+## Scope
 
-```bash
-python -m http.server 8501 --directory dashboard
-```
+The subset represents one week of generated results, not the complete simulation or measured field observations. The modelled control decisions have not been validated against an operational installation.
 
-Then open `http://localhost:8501/index.server.html`. Opening the server version via `file://` may show empty dropdowns because browsers block `fetch()` of local JSON files.
-
-## Limitations
-
-The 7-day subset is a simulation-derived demonstration prepared for portfolio display; it is not the full original 100+ MB dataset. The agrivoltaic control decisions are modelled estimates and have not been field validated. For model and source provenance, see `docs/SOURCES_AND_METHODS.md`.
+For methods and data provenance, see [sources and methods](../docs/SOURCES_AND_METHODS.md).
