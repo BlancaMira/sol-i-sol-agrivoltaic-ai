@@ -1,33 +1,45 @@
-# Sol i Sòl — AI for Agrivoltaic Decision Support
+# Sol i Sòl — Agrivoltaic Decision Support
 
-**Academic team project · BSc in Artificial Intelligence · Universitat Politècnica de Catalunya (UPC) · 2026**
+**Artificial Intelligence degree · Universitat Politècnica de Catalunya (UPC) · 2026**
 
-> **Academic simulation:** We worked from a fictional client's brief and limited, imperfect datasets. This is an educational prototype, not a deployed system or a real commercial engagement.
+Sol i Sòl is a university team project based on a fictional client brief. Our task was to propose a decision-support system for an agrivoltaic installation in Viladecans, where photovoltaic panels and crops share the same area.
 
-## Problem
-In agrivoltaic installations, adjusting solar-panel tilt involves trade-offs between electricity generation, light available to crops and mechanical/operational constraints. Our objective was to design a decision-support prototype that recommends a panel rotation based on those competing factors.
+The challenge was to find a reasonable balance between energy generation, sunlight available to crops and mechanical constraints on panel movement. The initial data were incomplete and contained inconsistencies, so understanding and preparing those datasets was an important part of the work.
 
 ## What we developed
-- **Data exploration and preparation:** investigate missing values, anomalies, timestamps and data quality; engineer modelling features.
-- **Multi-objective controller:** compare candidate tilt angles under energy, agricultural and movement criteria.
-- **Machine-learning evaluation:** train and compare regression approaches for approximating a simulated rotation-control policy.
-- **Synthetic scenarios:** generate additional scenarios to investigate system behaviour beyond the limited supplied data.
-- **Decision-support dashboard:** communicate recommended angles, trade-offs, alerts and scenario comparisons.
-- **Project planning:** simulate a client proposal including scope, budget, risk assessment, responsibilities and milestones.
 
-## Reported results and interpretation
-One supplementary offline model comparison reports a selected **Ridge regression** model with **test RMSE 8.031°** and **R² 0.818**. These are metrics for approximating a **modelled/provisional rotation policy**, *not* field-validated accuracy of physical solar-panel tracking. Other phases use different datasets and evaluation setups.
+- **Data preparation:** exploration of the supplied measurements, assessment of missing records, temporal alignment and feature engineering.
+- **Panel orientation controller:** a multi-objective approach to propose rotation angles according to estimated photovoltaic performance, crop conditions and movement constraints.
+- **Machine learning:** training and comparison of regression models to approximate the controller's simulated decisions.
+- **Scenario generation:** synthetic conditions to explore cases not represented well in the original data.
+- **Interactive dashboard:** a way to examine crop conditions, recommended panel positions, energy indicators and different configurations.
 
-The project documentation also reports a modelling phase with **1,003 records and 17 variables** after conservative preprocessing of the initial limited data. This number should not be confused with the size of synthetic scenario datasets.
+We also planned the delivery as a simulated company project, including a proposal, budget, risks and responsibilities. There was no real commercial client or field deployment.
 
-## Technologies
-Python, data cleaning and feature engineering, regression, model evaluation, optimization and dashboard development.
+## Dashboard
 
-## Reproducibility
-The original university submission includes scripts, a dashboard and output datasets. We are curating the source code and reproducibility instructions before publishing a reusable release. Original third-party inputs, large generated outputs and redistribution-restricted files are intentionally excluded.
+**[Dashboard (offline HTML)](dashboard/index.html)**
 
-## Limitations
-The controller and agricultural/energy calculations use approximations and simulations. We did not validate the system with a live solar installation, hardware actuators or field experiments.
+The standalone version can be downloaded and opened in a browser. It retains the original interface and uses a smaller subset of the results generated for the project: one week (15–21 July 2025), four crops and three panel configurations. The complete simulated time series was much larger and has not been included.
+
+GitHub displays the HTML source rather than running the dashboard inside its code viewer. To use the interactive version, download `dashboard/index.html` and open it in your browser.
+
+## Methods and evaluation
+
+The project report describes a preprocessing stage that reduced 3,153 temporal records to 1,003 records with 17 model variables. One offline comparison selected Ridge Regression (test **R² 0.818**, **RMSE 8.031°**) to approximate a rotation policy generated by the controller. These metrics describe agreement with a simulated target, not validation against real panel positions.
+
+The calculations use simplified physical and agronomic assumptions. We did not validate crop yields, photovoltaic gains or operational safety at a real installation.
+
+## Repository structure
+
+- `dashboard/`: original interface, standalone version and data preparation code.
+- `scripts/`: controller, regression training, synthetic scenarios and model comparisons.
+- `reports/`: model evaluation outputs and selected results.
+- `docs/`: original technical report, supporting documentation and sources.
+- `tests/`: checks for the demonstration dataset.
+
+See [sources and methods](docs/SOURCES_AND_METHODS.md), [dashboard guide](docs/DASHBOARD_GUIDE.md) and the [original technical report](docs/Sol_i_Sol_Technical_Report.pdf) for the decisions and references behind the prototype. The original report is written in Catalan.
 
 ## Credits
-Developed as a **university team project**. Individual contributions are not broken down in this overview. Please check contributor and redistribution permissions before reusing the complete coursework deliverable.
+
+Developed as a university team project at UPC.

@@ -1,0 +1,46 @@
+{
+  "schema": "samo.agri_pv.control_policy.v1",
+  "generated_by": "SOL I SOL DSS prototype",
+  "source_dashboard_data": "dashboard/dashboard_data.json",
+  "timestamp_local": "2025-07-18 14:00",
+  "timestamp_utc": "2025-07-18 12:00",
+  "site": {
+    "name": "Agròpolis Viladecans",
+    "timezone": "Europe/Madrid",
+    "angle_sign_convention": "negative_morning_east_positive_afternoon_west"
+  },
+  "context": {
+    "crop": "tomato",
+    "panel_type": "semi_transparent",
+    "ghi_wm2": 885.0,
+    "air_temp_c": 32.8,
+    "soil_temp_c": 27.2,
+    "relative_humidity_pct": 57.0,
+    "wind_speed_ms": 1.0,
+    "crop_stage": "late_crop",
+    "crop_cycle_progress": 0.84
+  },
+  "decision": {
+    "recommended_angle_deg": -15.0,
+    "tracker_reference_angle_deg": 0.5,
+    "mode": "optimized_tracking",
+    "reason": "optimized",
+    "energy_score": 0.971,
+    "crop_score": 0.187,
+    "movement_penalty": 0.136
+  },
+  "constraints": {
+    "max_angle_deg": 55,
+    "max_step_deg_per_hour": 15,
+    "night_idle_when_low_irradiance": true,
+    "wind_stow_threshold_ms": 10,
+    "requires_human_validation_before_real_actuation": true
+  },
+  "dss_validation": {
+    "ml_predicted_angle_deg": 1.89,
+    "bio_vs_ml_abs_difference_deg": 3.11,
+    "dss_match_band": "match_0_5deg",
+    "main_disagreement_reason": "match_within_5deg",
+    "top_ml_drivers": "ghi_wm2, eto_mm, dni_wm2"
+  }
+}

@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.ipynb_checkpoints/
+.DS_Store
+data/raw/
+data/private/
+outputs/
+dashboard/dashboard_data.json
+dashboard/SOL_I_SOL_dashboard_autonom.html
+*.tar

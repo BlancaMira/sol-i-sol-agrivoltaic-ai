@@ -1,0 +1,25 @@
+{
+  "series": {
+    "tomato": {
+      "semi_transparent": [
+        {
+          "t": "2025-07-18 14:00",
+          "tu": "2025-07-18T12:00:00Z",
+          "ghi": 750,
+          "temp": 27,
+          "soil": 24,
+          "hum": 49,
+          "wind": 3.2,
+          "crop_stage": "vegetative",
+          "crop_cycle_progress": 0.4,
+          "angle": 20,
+          "tracker_ref": 26,
+          "reason": "optimized_tracking",
+          "energy": 0.81,
+          "crop_score": 0.77,
+          "move": 0.08
+        }
+      ]
+    }
+  }
+}
