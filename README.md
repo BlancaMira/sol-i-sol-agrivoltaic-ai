@@ -1,53 +1,58 @@
-# Sol i Sòl — AI for Agrivoltaic Decision Support
+# Sol i Sòl — Agrivoltaic Decision Support
 
-**University team project · BSc in Artificial Intelligence · Universitat Politècnica de Catalunya (UPC) · 2026**
+**Artificial Intelligence degree · Universitat Politècnica de Catalunya (UPC) · 2026**
 
-> **Academic simulation:** We worked from a fictional client's brief and limited, imperfect datasets. This is an educational prototype, not a deployed system or a real commercial engagement.
+Sol i Sòl is a university team project developed in response to a fictional company's brief. The aim was to design a decision-support system for an agrivoltaic installation in Viladecans, where solar panels share space with crops.
 
-## The challenge
+Panel orientation affects both electricity generation and the light reaching the crops. We studied how a control system could balance these competing needs while accounting for weather conditions and limits on panel movement.
 
-In agrivoltaic installations, adjusting solar-panel tilt involves trade-offs between electricity generation, available light for crops and mechanical constraints. Our project explored decision-support recommendations that balance these factors when the supplied data are sparse, incomplete and inconsistent.
+## The project
 
-## Project workstreams
+The initial datasets were limited and contained missing or inconsistent observations. A significant part of the work therefore involved assessing data quality, deciding how to handle incomplete records and documenting the assumptions needed to continue.
 
-- **Data preparation:** exploratory analysis, missing-value assessment, temporal data integration and feature engineering.
-- **Multi-objective control:** recommendation of panel tilt with energy, agricultural and movement considerations.
-- **Machine-learning modelling:** comparison of regression models to approximate a simulated rotation-control policy.
-- **Scenario generation:** synthetic examples to explore conditions beyond the limited source data.
-- **Decision-support dashboard:** visual representation of recommendations, alerts and scenario trade-offs.
-- **Project management:** simulated client tender, budget, risk register, responsibilities and milestones.
+We then developed:
+- A **data preparation workflow** to inspect, clean and combine the available measurements.
+- A **multi-objective controller** to recommend panel angles using estimated photovoltaic performance, crop conditions and movement constraints.
+- **Machine-learning models** trained to approximate the controller's rotation decisions, with comparisons between modelling approaches.
+- **Synthetic scenarios** to explore situations not adequately represented in the supplied data.
+- An **interactive dashboard** for exploring recommendations, crop conditions, energy indicators and different panel configurations.
 
-## Results — with context
+Alongside the technical work, we prepared a project plan, budget, risk assessment and delivery proposal as we would for a real client. It was an academic simulation, not a commercial deployment.
 
-A supplementary offline comparison reported a selected **Ridge regression** model with **test RMSE 8.031°** and **R² 0.818**. These figures reflect **agreement with a simulated/provisional target**, *not* accuracy validated in an agricultural installation.
+## Dashboard
 
-A separate preprocessing/modelling phase described **1,003 records and 17 variables**. Generated synthetic datasets are not independent real-world ground truth.
+The dashboard was one of the main deliverables. It was built in HTML, CSS and JavaScript and allows users to explore several crops and photovoltaic panel types.
 
-## What is currently available in this repository
+**[Open the dashboard file](dashboard/index.html)** after downloading it from the repository. This version contains a smaller selection of simulated results and opens locally without a server. The complete submission used a much larger dataset, which has been omitted to keep the repository manageable.
 
-- `scripts/export_control_policy.py`: an original Python script that exports a recommendation as a machine-readable JSON policy; it does **not** actuate machinery.
-- `examples/dashboard_data.sample.json`: a tiny, explicitly **synthetic** input example.
-- `tests/test_control_policy.py`: a repeatable smoke test for JSON export.
-- `docs/RUNNING_THE_CODE.md`: commands for the runnable sample.
-- `docs/DATA_AND_EVALUATION.md`: provenance and interpretation of reported metrics.
-- `docs/PROJECT_SCOPE.md`: scope and limitations.
+The example covers **15–21 July 2025**, with hourly records for four crops and three panel configurations. These are results from our simulation, not live sensor readings or measured agricultural outcomes.
 
-**The complete controller, training scripts, dashboard and original datasets are not yet published in this branch.** They are being curated for permissions, dependencies and reproducibility.
+## Technical approach
 
-## Quick start (synthetic example)
+| Component | Description |
+| --- | --- |
+| Data preparation | Missing-value analysis, temporal alignment and feature engineering |
+| Controller | Multi-objective scoring of candidate panel angles |
+| Machine learning | Regression models for reproducing controller-generated decisions |
+| Scenario generation | Synthetic environmental and operational situations |
+| Dashboard | Visual analysis of recommendations and trade-offs |
 
-```bash
-python -m pip install -r requirements.txt
-python scripts/export_control_policy.py --dashboard-data examples/dashboard_data.sample.json --comparison examples/nonexistent.csv --crop tomato --panel semi_transparent --out outputs/sample_policy.json
-python -m unittest discover -s tests -v
-```
+The submitted report describes a preprocessing stage that reduced **3,153 time records** to **1,003 records with 17 modelling variables**. In one offline comparison, Ridge Regression achieved **R² = 0.818** and **RMSE = 8.031°** against a simulated rotation target. These metrics do **not** measure performance against real panel movements.
 
-See [running instructions](docs/RUNNING_THE_CODE.md). No original dataset is needed for this small smoke test.
+## Repository contents
 
-## Limitations
+- `dashboard/` — interactive interface and the scripts used to prepare its data.
+- `scripts/` — controller, model training, scenario generation and comparison tools.
+- `reports/` — selected model results and evaluation notes.
+- `docs/` — technical report, methodology, assumptions and source references.
+- `tests/` and `examples/` — small checks and illustrative inputs.
 
-This is a university simulation using approximate physical/agronomic models and simulation-derived targets. Live hardware integration, measured photovoltaic production, measured crop yield and field validation were outside the prototype's scope.
+See [sources and methodology](docs/SOURCES_AND_METHODS.md) for the reference material behind the physical models, meteorological data and agronomic assumptions. The original technical report is written in Catalan.
 
-## Credits
+## Scope and limitations
 
-Developed collaboratively as a **university team project**. No individual contribution breakdown is needed for this project overview. Redistribution and contributor permissions should be checked before publishing the whole deliverable.
+This was a proof of concept using simplified physical and agronomic models. We did not connect it to a real installation or validate energy production and crop yields in the field. Some results depend on synthetic data and model-generated targets.
+
+## Team
+
+Developed as a group project for the BSc in Artificial Intelligence at UPC.
