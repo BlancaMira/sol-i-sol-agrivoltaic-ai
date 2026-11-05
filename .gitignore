@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.pytest_cache/
+.ipynb_checkpoints/
+# Local data / model artefacts
+data/raw/
+data/private/
+outputs/
+results/generated/
+*.joblib
+*.pkl
+*.parquet
+# Large standalone exports
+*.html
+# Editors
+.DS_Store
+.vscode/
+.idea/
