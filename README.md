@@ -1,33 +1,53 @@
 # Sol i Sòl — AI for Agrivoltaic Decision Support
 
-**Academic team project · BSc in Artificial Intelligence · Universitat Politècnica de Catalunya (UPC) · 2026**
+**University team project · BSc in Artificial Intelligence · Universitat Politècnica de Catalunya (UPC) · 2026**
 
 > **Academic simulation:** We worked from a fictional client's brief and limited, imperfect datasets. This is an educational prototype, not a deployed system or a real commercial engagement.
 
-## Problem
-In agrivoltaic installations, adjusting solar-panel tilt involves trade-offs between electricity generation, light available to crops and mechanical/operational constraints. Our objective was to design a decision-support prototype that recommends a panel rotation based on those competing factors.
+## The challenge
 
-## What we developed
-- **Data exploration and preparation:** investigate missing values, anomalies, timestamps and data quality; engineer modelling features.
-- **Multi-objective controller:** compare candidate tilt angles under energy, agricultural and movement criteria.
-- **Machine-learning evaluation:** train and compare regression approaches for approximating a simulated rotation-control policy.
-- **Synthetic scenarios:** generate additional scenarios to investigate system behaviour beyond the limited supplied data.
-- **Decision-support dashboard:** communicate recommended angles, trade-offs, alerts and scenario comparisons.
-- **Project planning:** simulate a client proposal including scope, budget, risk assessment, responsibilities and milestones.
+In agrivoltaic installations, adjusting solar-panel tilt involves trade-offs between electricity generation, available light for crops and mechanical constraints. Our project explored decision-support recommendations that balance these factors when the supplied data are sparse, incomplete and inconsistent.
 
-## Reported results and interpretation
-One supplementary offline model comparison reports a selected **Ridge regression** model with **test RMSE 8.031°** and **R² 0.818**. These are metrics for approximating a **modelled/provisional rotation policy**, *not* field-validated accuracy of physical solar-panel tracking. Other phases use different datasets and evaluation setups.
+## Project workstreams
 
-The project documentation also reports a modelling phase with **1,003 records and 17 variables** after conservative preprocessing of the initial limited data. This number should not be confused with the size of synthetic scenario datasets.
+- **Data preparation:** exploratory analysis, missing-value assessment, temporal data integration and feature engineering.
+- **Multi-objective control:** recommendation of panel tilt with energy, agricultural and movement considerations.
+- **Machine-learning modelling:** comparison of regression models to approximate a simulated rotation-control policy.
+- **Scenario generation:** synthetic examples to explore conditions beyond the limited source data.
+- **Decision-support dashboard:** visual representation of recommendations, alerts and scenario trade-offs.
+- **Project management:** simulated client tender, budget, risk register, responsibilities and milestones.
 
-## Technologies
-Python, data cleaning and feature engineering, regression, model evaluation, optimization and dashboard development.
+## Results — with context
 
-## Reproducibility
-The original university submission includes scripts, a dashboard and output datasets. We are curating the source code and reproducibility instructions before publishing a reusable release. Original third-party inputs, large generated outputs and redistribution-restricted files are intentionally excluded.
+A supplementary offline comparison reported a selected **Ridge regression** model with **test RMSE 8.031°** and **R² 0.818**. These figures reflect **agreement with a simulated/provisional target**, *not* accuracy validated in an agricultural installation.
+
+A separate preprocessing/modelling phase described **1,003 records and 17 variables**. Generated synthetic datasets are not independent real-world ground truth.
+
+## What is currently available in this repository
+
+- `scripts/export_control_policy.py`: an original Python script that exports a recommendation as a machine-readable JSON policy; it does **not** actuate machinery.
+- `examples/dashboard_data.sample.json`: a tiny, explicitly **synthetic** input example.
+- `tests/test_control_policy.py`: a repeatable smoke test for JSON export.
+- `docs/RUNNING_THE_CODE.md`: commands for the runnable sample.
+- `docs/DATA_AND_EVALUATION.md`: provenance and interpretation of reported metrics.
+- `docs/PROJECT_SCOPE.md`: scope and limitations.
+
+**The complete controller, training scripts, dashboard and original datasets are not yet published in this branch.** They are being curated for permissions, dependencies and reproducibility.
+
+## Quick start (synthetic example)
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/export_control_policy.py --dashboard-data examples/dashboard_data.sample.json --comparison examples/nonexistent.csv --crop tomato --panel semi_transparent --out outputs/sample_policy.json
+python -m unittest discover -s tests -v
+```
+
+See [running instructions](docs/RUNNING_THE_CODE.md). No original dataset is needed for this small smoke test.
 
 ## Limitations
-The controller and agricultural/energy calculations use approximations and simulations. We did not validate the system with a live solar installation, hardware actuators or field experiments.
+
+This is a university simulation using approximate physical/agronomic models and simulation-derived targets. Live hardware integration, measured photovoltaic production, measured crop yield and field validation were outside the prototype's scope.
 
 ## Credits
-Developed as a **university team project**. Individual contributions are not broken down in this overview. Please check contributor and redistribution permissions before reusing the complete coursework deliverable.
+
+Developed collaboratively as a **university team project**. No individual contribution breakdown is needed for this project overview. Redistribution and contributor permissions should be checked before publishing the whole deliverable.
